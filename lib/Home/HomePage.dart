@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:login/Services/auth.dart';
 import '../ActivePage/EditProfilePage.dart';
 import '../Profile/ProfilePage.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,13 +15,15 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _radiusAnimation;
-  final List<Widget> pages = [EditProfile(),Profile()];
+  final AuthServices _auth = AuthServices();
+  final List<Widget> pages = [EditProfile(), Profile()];
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300), // Tăng thời gian để hiệu ứng chậm lại
+      duration: const Duration(
+          milliseconds: 300), // Tăng thời gian để hiệu ứng chậm lại
     );
 
     _radiusAnimation = Tween(begin: 150.0, end: 220.0).animate(
@@ -42,24 +46,50 @@ class _HomePageState extends State<HomePage>
     _controller.forward();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
+        preferredSize: const Size.fromHeight(80.0),
         child: AppBar(
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Wellcome to',style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w200),),
+              Text(
+                'Welcome to',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w200),
+              ),
               // SizedBox(height: 10,),
-              Text('Troller Việt Nam',style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),),
+              Text(
+                'Troller Việt Nam',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+              ),
             ],
           ),
-          backgroundColor: Color(0xFF1B1E69),
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10),
+          backgroundColor: const Color(0xFF1B1E69),
+          actions: <Widget>[
+            TextButton.icon(
+              icon: Icon(Icons.person),
+              label: const Text('Logout'),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            )
+          ],
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 10),
             child: CircleAvatar(
-              backgroundImage:AssetImage('assets/meme.jpg'), // Thay đổi đường dẫn ảnh của bạn ở đây
+              backgroundImage: AssetImage(
+                  'assets/meme.jpg'), // Thay đổi đường dẫn ảnh của bạn ở đây
             ),
           ),
         ),
@@ -68,10 +98,10 @@ class _HomePageState extends State<HomePage>
       body: Center(
         child: InkWell(
           borderRadius: BorderRadius.circular(200),
-          onTap: (){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Đã gửi tín hiệu cầu cứu!'),)
-            );
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Đã gửi tín hiệu cầu cứu!'),
+            ));
           },
           child: Stack(
             alignment: Alignment.center,
@@ -79,7 +109,7 @@ class _HomePageState extends State<HomePage>
               Container(
                 width: _radiusAnimation.value,
                 height: _radiusAnimation.value,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xFFECECEC),
                 ),
@@ -87,7 +117,7 @@ class _HomePageState extends State<HomePage>
               Container(
                 width: _radiusAnimation.value * 0.8,
                 height: _radiusAnimation.value * 0.8,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xFFA7C9F2),
                 ),
@@ -95,7 +125,7 @@ class _HomePageState extends State<HomePage>
               Container(
                 width: _radiusAnimation.value * 0.6,
                 height: _radiusAnimation.value * 0.6,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xFF7DA9DE),
                 ),
@@ -103,7 +133,7 @@ class _HomePageState extends State<HomePage>
               Container(
                 width: _radiusAnimation.value * 0.4,
                 height: _radiusAnimation.value * 0.4,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xFF465394),
                 ),
@@ -120,8 +150,6 @@ class _HomePageState extends State<HomePage>
           ),
         ),
       ),
-
-
     );
   }
 }

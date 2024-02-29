@@ -1,33 +1,29 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:login/AcountPage/login.dart';
-import 'package:login/Contact/ContactPage.dart';
-import 'package:login/Navigation/App_Navigation.dart';
-import 'Home/HomePage.dart';
-import 'ActivePage/EditProfilePage.dart';
-import 'Profile/ProfilePage.dart';
-import 'Contact/ContactPage.dart';
-import 'ActivePage/Main_Wrapper.dart';
-void main() {
+import 'package:login/Services/auth.dart';
+import 'package:provider/provider.dart';
+import 'Wrapper/wrapper.dart';
+import 'firebase_options.dart';
+import 'models/user.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: StartPage(),
+    return StreamProvider<Users?>.value(
+      initialData: null,
+      value: AuthServices().user,
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
+      ),
     );
   }
 }
 
-class StartPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppNavigation.router,
-    );
-  }
-}

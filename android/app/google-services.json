@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "289970729939",
+    "project_id": "helpinghand-8116d",
+    "storage_bucket": "helpinghand-8116d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289970729939:android:945b127fa38655dc097526",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMlAF1piGdHmBDbdXQ6uOVwIE2G8fhYYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289970729939:android:92730cf43eb718a8097526",
+        "android_client_info": {
+          "package_name": "com.example.records"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMlAF1piGdHmBDbdXQ6uOVwIE2G8fhYYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
