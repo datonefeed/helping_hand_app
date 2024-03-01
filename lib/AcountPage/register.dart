@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
-import 'package:login/Services/auth.dart';
+import 'package:HelpingHand/Services/auth.dart';
 
 Map<String, String> listOfValue = {
   "name": "",
@@ -101,7 +101,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                           });
                                         }),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     buildTextField(
                                         hintText: 'Valid Email',
@@ -112,7 +112,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                           });
                                         }),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     buildTextField(
                                         hintText: 'Phone Number',
@@ -124,7 +124,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                           });
                                         }),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     buildTextField(
                                         hintText: 'Strong Password',

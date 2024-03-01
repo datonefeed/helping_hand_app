@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/AcountPage/login.dart';
-import 'package:login/Widget/CustomWidget.dart';
+import 'package:HelpingHand/AcountPage/login.dart';
+import 'package:HelpingHand/Widget/CustomWidget.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
   @override

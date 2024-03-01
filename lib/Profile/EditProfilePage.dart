@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login/Widget/CustomWidget.dart';
+import 'package:HelpingHand/Widget/CustomWidget.dart';
 class EditProfile extends StatelessWidget {
+  const EditProfile({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

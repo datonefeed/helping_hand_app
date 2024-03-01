@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:login/Services/auth.dart';
-import '../ActivePage/EditProfilePage.dart';
+import 'package:HelpingHand/Services/auth.dart';
+import 'package:HelpingHand/local_notifications.dart';
+import '../Profile/EditProfilePage.dart';
 import '../Profile/ProfilePage.dart';
+import '../Record_AI/Alan_record.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,16 +19,16 @@ class _HomePageState extends State<HomePage>
   late Animation<double> _radiusAnimation;
   final AuthServices _auth = AuthServices();
   final List<Widget> pages = [EditProfile(), Profile()];
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(
-          milliseconds: 300), // Tăng thời gian để hiệu ứng chậm lại
-    );
+      duration: const Duration(seconds: 1),
+    )..forward();
 
-    _radiusAnimation = Tween(begin: 150.0, end: 220.0).animate(
+    _radiusAnimation = Tween(begin: 200.0, end: 3000.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
@@ -36,14 +38,15 @@ class _HomePageState extends State<HomePage>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        _controller.reverse(); // Reverse animation when completed
+        _controller.reverse();
       } else if (status == AnimationStatus.dismissed) {
-        _controller.forward(); // Forward animation when dismissed
+        _controller.forward();
       }
     });
-
-    // Bỏ Timer.periodic và thay thế bằng lệnh gọi forward ở cuối initState()
     _controller.forward();
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   _controller.forward();
+    // });
   }
 
   @override
@@ -77,9 +80,12 @@ class _HomePageState extends State<HomePage>
           ),
           backgroundColor: const Color(0xFF1B1E69),
           actions: <Widget>[
-            TextButton.icon(
-              icon: Icon(Icons.person),
-              label: const Text('Logout'),
+            TextButton(
+              child: const Text(
+                'Logout',
+                style:
+                    TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+              ),
               onPressed: () async {
                 await _auth.signOut();
               },
@@ -96,57 +102,90 @@ class _HomePageState extends State<HomePage>
       ),
       backgroundColor: Colors.white,
       body: Center(
-        child: InkWell(
-          borderRadius: BorderRadius.circular(200),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Đã gửi tín hiệu cầu cứu!'),
-            ));
-          },
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: _radiusAnimation.value,
-                height: _radiusAnimation.value,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFECECEC),
+        child: Container(
+          width: 300,
+          child: InkWell(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                  "Đã gửi tín hiệu cầu cứu!",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
                 ),
-              ),
-              Container(
-                width: _radiusAnimation.value * 0.8,
-                height: _radiusAnimation.value * 0.8,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFA7C9F2),
+                backgroundColor: Color(0xFF1B1E69),
+              ));
+              LocalNotifications.showSimpleNotification(
+                  title: "Đạt đang gặp nguy hiểm, hãy kệ cmn!",
+                  body: "cíu cíu, help me! help me!",
+                  payload: "help me!");
+            },
+            onLongPress: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AIRecord()));
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: _radiusAnimation.value,
+                  height: _radiusAnimation.value,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFECECEC),
+                  ),
                 ),
-              ),
-              Container(
-                width: _radiusAnimation.value * 0.6,
-                height: _radiusAnimation.value * 0.6,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFF7DA9DE),
+                Container(
+                  width: _radiusAnimation.value * 0.8,
+                  height: _radiusAnimation.value * 0.8,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFBCCEE2),
+                  ),
                 ),
-              ),
-              Container(
-                width: _radiusAnimation.value * 0.4,
-                height: _radiusAnimation.value * 0.4,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFF465394),
+                Container(
+                  width: _radiusAnimation.value * 0.6,
+                  height: _radiusAnimation.value * 0.6,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFA4BEDD),
+                  ),
                 ),
-              ),
-              Container(
-                child: Image.asset(
-                  'assets/bell.png',
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.contain,
+                Container(
+                  width: _radiusAnimation.value * 0.4,
+                  height: _radiusAnimation.value * 0.4,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF8CAED8),
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  width: _radiusAnimation.value * 0.2,
+                  height: _radiusAnimation.value * 0.2,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF749FD3),
+                  ),
+                ),
+                Container(
+                  width: _radiusAnimation.value * 0.1,
+                  height: _radiusAnimation.value * 0.1,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF465394),
+                  ),
+                ),
+                Container(
+                  child: Image.asset(
+                    'assets/bell.png',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

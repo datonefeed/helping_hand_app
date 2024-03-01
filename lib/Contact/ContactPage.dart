@@ -16,8 +16,8 @@ class ContactPage extends StatelessWidget {
                   onTap: (){},
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset('assets/return.png',width: 30,height: 30,)),
-                  SizedBox(width: 20,),
-                  Text('Add Contact', style: TextStyle(fontSize: 30, color: Colors.white),),
+                  const SizedBox(width: 20,),
+                  const Text('Add Contact', style: TextStyle(fontSize: 30, color: Colors.white),),
             ],
           ),
         ),
@@ -35,8 +35,8 @@ class ContactPage extends StatelessWidget {
                     height: 30,
                     child: Icon(Icons.add_circle, color: Color(0xFF1B1E69), size: 40,),
                   ),
-                  SizedBox(width: 20,),
-                  Text('Add Contact', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color:Color(0xFF1B1E69) ),)
+                  const SizedBox(width: 20,),
+                  const Text('Add Contact', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color:Color(0xFF1B1E69) ),)
                 ],
               ),
             )
