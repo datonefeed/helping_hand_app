@@ -42,7 +42,7 @@ class _MainWrapperState extends State<MainWrapper> {
         tabBorderRadius: 8,
         tabMargin: EdgeInsets.all(10),
         padding: EdgeInsets.all(8),
-        tabs: [
+        tabs: const [
           GButton(
             icon: Icons.home,
             text: "Home",

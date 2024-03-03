@@ -4,8 +4,16 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final IconData? icon;
   final bool obscureText;
+  final TextEditingController? controller;
+  final Function(String)? onChanged; // Thêm tham số hàm onChanged
 
-  CustomTextField({this.hintText, this.icon, this.obscureText = false});
+  CustomTextField({
+    this.hintText,
+    this.icon,
+    this.obscureText = false,
+    this.controller,
+    this.onChanged, // Thêm onChanged vào constructor
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,9 @@ class CustomTextField extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         child: TextField(
+          controller: controller,
           obscureText: obscureText,
+          onChanged: onChanged, // Sử dụng hàm onChanged được truyền vào
           decoration: InputDecoration(
             hintText: hintText,
             border: InputBorder.none,
@@ -32,6 +42,7 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
 
 class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -52,8 +63,8 @@ class CustomElevatedButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(300, 50),
-        primary: const Color(0xFF1B1E69),
-        onPrimary: Colors.grey,
+        backgroundColor: const Color(0xFF1B1E69),
+        disabledBackgroundColor: Colors.grey, // Use onSurface instead of onPrimary
         elevation: elevation,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
@@ -70,12 +81,12 @@ class CustomElevatedButton extends StatelessWidget {
   }
 }
 
+
+
 class CustomElevatedButtonWithIcon extends StatelessWidget {
   final VoidCallback onPressed;
   final dynamic icon; // Thay đổi kiểu dữ liệu của icon thành dynamic
   final Widget label;
-  final Color primaryColor;
-  final Color onPrimaryColor;
   final double minWidth;
   final double height;
   final double borderRadius;
@@ -84,8 +95,6 @@ class CustomElevatedButtonWithIcon extends StatelessWidget {
     required this.onPressed,
     required this.icon,
     required this.label,
-    this.primaryColor = const Color(0xFFF3F3F3),
-    this.onPrimaryColor = Colors.black,
     this.minWidth = 300,
     this.height = 40,
     this.borderRadius = 5,
@@ -97,8 +106,8 @@ class CustomElevatedButtonWithIcon extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: Size(minWidth, height),
-        primary: primaryColor,
-        onPrimary: onPrimaryColor,
+        backgroundColor: const Color(0xFFF3F3F3),
+        disabledBackgroundColor: Colors.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),

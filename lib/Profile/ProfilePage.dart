@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:HelpingHand/AcountPage/login.dart';
 import 'package:HelpingHand/Widget/CustomWidget.dart';
-class Profile extends StatelessWidget {
+import 'package:go_router/go_router.dart';
+class Profile extends StatefulWidget {
   const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +59,10 @@ class Profile extends StatelessWidget {
                       SizedBox(height: 30,),
                       CustomElevatedButtonWithIcon(
                         icon: Icons.person,
-                        onPressed: (){},
+                        onPressed: (){
+                          context.pushReplacementNamed("EditProFile");
+
+                        },
                         label: Text('Edit profile'),
                       ),
                       SizedBox(height: 10,),
@@ -74,32 +83,7 @@ class Profile extends StatelessWidget {
                         onPressed: (){},
                         label: Text('Setting'),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
-                          );
-                        },
-                        style: ButtonStyle(
-                          overlayColor:
-                          MaterialStateColor.resolveWith(
-                                (states) => Colors.transparent,
-                          ),
-                          foregroundColor:
-                          MaterialStateProperty.resolveWith(
-                                (states) {
-                              if (states.contains(
-                                  MaterialState.pressed)) {
-                                return Colors.grey;
-                              }
-                            },
-                          ),
-                        ),
-                        child: const Text('Log out', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),),
-                      ),
+
                     ],
                   ),
                 ],

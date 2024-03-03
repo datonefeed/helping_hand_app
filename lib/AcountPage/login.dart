@@ -144,6 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 Row(
                                   children: [
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
                                     const Padding(
                                         padding: EdgeInsets.only(left: 10.0)),
                                     RememberMeCheckBox(),
@@ -151,24 +154,27 @@ class _LoginPageState extends State<LoginPage> {
                                     const SizedBox(
                                       width: 20,
                                     ),
-        
+
                                     TextButton(
                                       style: ButtonStyle(
-                                        overlayColor:
-                                            MaterialStateColor.resolveWith(
-                                                (states) => Colors.transparent),
-                                        foregroundColor:
-                                            MaterialStateProperty.resolveWith(
-                                                (states) {
-                                          if (states
-                                              .contains(MaterialState.pressed)) {
-                                            return Colors.grey;
-                                          }
-                                        }),
+                                        overlayColor: MaterialStateColor.resolveWith(
+                                              (states) => Colors.transparent,
+                                        ),
+                                        foregroundColor: MaterialStateProperty.resolveWith(
+                                              (states) {
+                                            if (states.contains(MaterialState.pressed)) {
+                                              return Colors.grey;
+                                            }
+                                            // Return a default color if none of the conditions match
+                                            return null; // or any other default color
+                                          },
+                                        ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {}, // Empty function body
                                       child: const Text('Forgot Password?'),
                                     ),
+
+
                                     // const Padding(
                                     //     padding: EdgeInsets.only(right: 10)),
                                   ],
@@ -191,8 +197,8 @@ class _LoginPageState extends State<LoginPage> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                       minimumSize: const Size(300, 50),
-                                      primary: const Color(0xFF1B1E69),
-                                      onPrimary: Colors.grey,
+                                      backgroundColor: const Color(0xFF1B1E69),
+                                      disabledBackgroundColor: Colors.grey,
                                       elevation: 5,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -215,8 +221,8 @@ class _LoginPageState extends State<LoginPage> {
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(300, 30),
-                                    primary: const Color(0xFFF3F3F3),
-                                    onPrimary: Colors.grey,
+                                    backgroundColor: const Color(0xFFF3F3F3),
+                                    disabledBackgroundColor: Colors.grey,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
@@ -242,8 +248,8 @@ class _LoginPageState extends State<LoginPage> {
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(300, 30),
-                                    primary: const Color(0xFFF3F3F3),
-                                    onPrimary: Colors.grey,
+                                    backgroundColor: const Color(0xFFF3F3F3),
+                                     disabledBackgroundColor: Colors.grey,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
@@ -281,20 +287,22 @@ class _LoginPageState extends State<LoginPage> {
                                         );
                                       },
                                       style: ButtonStyle(
-                                        overlayColor:
-                                            MaterialStateColor.resolveWith(
-                                                (states) => Colors.transparent),
-                                        foregroundColor:
-                                            MaterialStateProperty.resolveWith(
-                                                (states) {
-                                          if (states
-                                              .contains(MaterialState.pressed)) {
-                                            return Colors.grey;
-                                          }
-                                        }),
+                                        overlayColor: MaterialStateColor.resolveWith(
+                                              (states) => Colors.transparent,
+                                        ),
+                                        foregroundColor: MaterialStateProperty.resolveWith(
+                                              (states) {
+                                            if (states.contains(MaterialState.pressed)) {
+                                              return Colors.grey;
+                                            }
+                                            // Return a default color if none of the conditions match
+                                            return Colors.black; // You can choose any default color you prefer
+                                          },
+                                        ),
                                       ),
                                       child: const Text('Register now'),
                                     )
+
                                   ],
                                 )
                               ],

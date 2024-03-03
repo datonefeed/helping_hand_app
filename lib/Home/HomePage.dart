@@ -1,11 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:HelpingHand/Services/auth.dart';
 import 'package:HelpingHand/local_notifications.dart';
 import '../Profile/EditProfilePage.dart';
 import '../Profile/ProfilePage.dart';
-import '../Record_AI/Alan_record.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -14,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
+
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _radiusAnimation;
@@ -120,10 +118,6 @@ class _HomePageState extends State<HomePage>
                   title: "Đạt đang gặp nguy hiểm, hãy kệ cmn!",
                   body: "cíu cíu, help me! help me!",
                   payload: "help me!");
-            },
-            onLongPress: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => AIRecord()));
             },
             child: Stack(
               alignment: Alignment.center,

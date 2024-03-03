@@ -92,7 +92,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                    buildTextField(
+                                    CusBuildTextField(
                                         hintText: 'Full Name',
                                         icon: Icons.person,
                                         onChange: (newVal) {
@@ -103,7 +103,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    buildTextField(
+                                    CusBuildTextField(
                                         hintText: 'Valid Email',
                                         icon: Icons.email,
                                         onChange: (newVal) {
@@ -114,7 +114,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    buildTextField(
+                                    CusBuildTextField(
                                         hintText: 'Phone Number',
                                         icon: Icons.phone,
                                         onChange: (newVal) {
@@ -126,7 +126,7 @@ class _RegisterAppState extends State<RegisterApp> {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    buildTextField(
+                                    CusBuildTextField(
                                         hintText: 'Strong Password',
                                         icon: Icons.lock,
                                         onChange: (newVal) {
@@ -157,8 +157,8 @@ class _RegisterAppState extends State<RegisterApp> {
                                       },
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: const Size(300, 50),
-                                        primary: const Color(0xFF1B1E69),
-                                        onPrimary: Colors.grey,
+                                        backgroundColor: const Color(0xFF1B1E69),
+                                        disabledBackgroundColor: Colors.grey,
                                         elevation: 5,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -184,8 +184,8 @@ class _RegisterAppState extends State<RegisterApp> {
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: const Size(300, 30),
-                                        primary: const Color(0xFFF3F3F3),
-                                        onPrimary: Colors.grey,
+                                        backgroundColor: const Color(0xFFF3F3F3),
+                                        disabledBackgroundColor: Colors.grey,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5),
@@ -213,8 +213,8 @@ class _RegisterAppState extends State<RegisterApp> {
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: const Size(300, 30),
-                                        primary: const Color(0xFFF3F3F3),
-                                        onPrimary: Colors.grey,
+                                        backgroundColor: const Color(0xFFF3F3F3),
+                                        disabledBackgroundColor: Colors.grey,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5),
@@ -292,20 +292,23 @@ class _RegisterAppState extends State<RegisterApp> {
   }
 }
 
-class buildTextField extends StatefulWidget {
-  String hintText;
-  IconData icon;
+class CusBuildTextField extends StatefulWidget {
+  final String hintText;
+  final IconData icon;
   final dynamic onChange;
-  buildTextField(
-      {super.key,
-      required this.hintText,
-      required this.icon,
-      required this.onChange});
+
+  const CusBuildTextField({
+    Key? key,
+    required this.hintText,
+    required this.icon,
+    required this.onChange,
+  }) : super(key: key);
+
   @override
-  State<buildTextField> createState() => _buildTextFieldState();
+  State<CusBuildTextField> createState() => _BuildTextFieldState();
 }
 
-class _buildTextFieldState extends State<buildTextField> {
+class _BuildTextFieldState extends State<CusBuildTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -325,7 +328,7 @@ class _buildTextFieldState extends State<buildTextField> {
             if (widget.hintText.contains('Password')) {
               return val!.length < 6
                   ? 'Password must be 6 characters or longer'
-                  : null;;
+                  : null;
             }
             if (widget.hintText.contains('Phone')) {
               return isNumeric(val!) ? null : 'Enter your phone number';
@@ -354,6 +357,7 @@ class _buildTextFieldState extends State<buildTextField> {
     );
   }
 }
+
 
 bool isNumeric(String s) {
   return int.tryParse(s) != null;
