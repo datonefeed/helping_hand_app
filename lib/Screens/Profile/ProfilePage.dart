@@ -104,22 +104,21 @@ class _ProfileState extends State<Profile> {
               height: 150,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                // color: Colors.blue, // Màu nền của hình tròn
                 border: Border.all(
-                  color: Colors.transparent, // Màu viền
-                  width: 5, // Độ rộng của viền
+                  color: Colors.transparent,
+                  width: 5,
                 ),
                 gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.pinkAccent], // Màu của viền
-                  begin: Alignment.topLeft, // Điểm bắt đầu của gradient
-                  end: Alignment.bottomRight, // Điểm kết thúc của gradient
+                  colors: [Colors.blue, Colors.pinkAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
               child: CircleAvatar(
-                radius: 70, // Bán kính của avatar
+                radius: 70,
                 backgroundImage: AssetImage(
                   'assets/meme-ech-xanh-25.jpg',
-                ), // Đường dẫn ảnh avatar
+                ),
               ),
             ),
           ],
