@@ -11,7 +11,6 @@ class AppNavigation {
 
   static String initR = '/Home';
 
-  //Private navigatiors keys
   static final _rootNavigatiorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatiorHome =
       GlobalKey<NavigatorState>(debugLabel: 'ShelHome');
@@ -20,18 +19,14 @@ class AppNavigation {
   static final _rootNavigatiorProfile =
       GlobalKey<NavigatorState>(debugLabel: 'ShelProfile');
 
-  //go router configuration
-
   static final GoRouter router = GoRouter(
     initialLocation: initR,
     navigatorKey: _rootNavigatiorKey,
     routes: <RouteBase>[
-      //Mainwrapper router
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             MainWrapper(navigationShell: navigationShell),
         branches: <StatefulShellBranch>[
-          //branch home
           StatefulShellBranch(
             navigatorKey: _rootNavigatiorHome,
             routes: [
@@ -46,8 +41,6 @@ class AppNavigation {
                   })
             ],
           ),
-          //branch add contact
-          //brach home
           StatefulShellBranch(
             navigatorKey: _rootNavigatiorAddContact,
             routes: [
@@ -61,8 +54,6 @@ class AppNavigation {
                   })
             ],
           ),
-
-          //brach AddContact
           StatefulShellBranch(
             navigatorKey: _rootNavigatiorProfile,
             routes: [
@@ -75,7 +66,6 @@ class AppNavigation {
                     );
                   },
                   routes: [
-                    /// edit profile
                     GoRoute(
                         path: 'subProFile',
                         name: 'EditProFile',
