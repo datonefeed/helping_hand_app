@@ -42,9 +42,6 @@ class _HomePageState extends State<HomePage>
       }
     });
     _controller.forward();
-    // Timer.periodic(Duration(seconds: 1), (timer) {
-    //   _controller.forward();
-    // });
   }
 
   @override
@@ -92,8 +89,7 @@ class _HomePageState extends State<HomePage>
           leading: const Padding(
             padding: EdgeInsets.only(left: 10),
             child: CircleAvatar(
-              backgroundImage: AssetImage(
-                  'assets/meme.jpg'), // Thay đổi đường dẫn ảnh của bạn ở đây
+              backgroundImage: AssetImage('assets/meme.jpg'),
             ),
           ),
         ),
